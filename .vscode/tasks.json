@@ -1,0 +1,50 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cargo",
+            "command": "watch",
+            "args": [
+                "-q",
+                "-c",
+                "-w",
+                "src/",
+                "-x",
+                "run --bin lyram"
+            ],
+            "problemMatcher": [
+                "$rustc",
+                "$rust-panic"
+            ],
+            "label": "Cargo watch run lyram",
+            "env": {
+                "RUST_LOG": "lyram=trace"
+            }
+        },
+        {
+            "type": "cargo",
+            "command": "run",
+            "args": [
+                "--release",
+                "--bin",
+                "lyram"
+            ],
+            "problemMatcher": [
+                "$rustc",
+                "$rust-panic"
+            ],
+            "label": "Cargo run --release with env",
+            "env": {
+                "RUST_LOG": "lyram=info",
+                "DB_PG_USER": "postgres",
+                "DB_PG_PWD": "admin",
+                "DB_PG_HOST": "192.168.0.11",
+                "DB_PG_PORT": "5432",
+                "DB_PG_DATABASE": "lyram",
+                "JWT_SECRET": "*4w*8Df&4r^E6LM!ao&T2L7pMkR65$vN",
+            }
+        }
+    ]
+}
